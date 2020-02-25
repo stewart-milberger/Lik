@@ -1,4 +1,7 @@
 data/
+pl_images/
+cropped_random_images/
+google_images/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
