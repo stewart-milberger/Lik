@@ -4,6 +4,7 @@ cropped_random_images/
 google_images/
 final_PL/
 final_nonPL/
+baseline/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
