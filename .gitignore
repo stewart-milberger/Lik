@@ -5,6 +5,8 @@ google_images/
 final_PL/
 final_nonPL/
 baseline/
+model_checkpoints/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
