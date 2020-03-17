@@ -4,7 +4,7 @@
 Photography is mainstream. Everyone is capable of taking a great photo, but what determines the photo’s quality? In such a competitive industry, I’m interested in what sets one apart from many. Peter Lik holds the record for the most expensive photo ever sold, but is his keen eye really worth $6 million for one photo? This analysis aims to identify characteristics or distinguishing features of his photos to set a world-class photographer apart from any average Joe.
 
 ## Goal
-This project aims to build a convolutional neural net to classify images as either a Peter Lik photograph or not. 
+Build a convolutional neural net to classify images as either a Peter Lik photograph or not. Instead of using AWS or other cloud services, use limited hardware(Ryzen 7 CPU and a Radeon RX 580 GPU) to achieve reasonable classification accuracy.
 
 
 ## Images
@@ -16,8 +16,14 @@ The other class(non-PL) of image was obtained from a landscape image [Kaggle-Dat
 ### Non-Peter Lik Examples:
 
 
-## GPU Computing
-Rather than tackle the dataset(very large images) through AWS, I wanted to find an at-home solution. I currently own a pc with a Ryzen 7 CPU and a Radeon RX 580 GPU, and decided to see how feasible a CNN is with limited hardware. In order to allow tensorflow to make use of the GPU, the [Rocm](https://rocm.github.io/) docker image was implemented and [TensorFlow-GPU](https://www.tensorflow.org/install/gpu) was installed.  
+## Baseline CNN
+My initial approach used the full resolustion images. With a very basic, 4 layer CNN. Due to the size of the images, I had many issues with loading the data into memory. Loading the images in batches of 6 enabled the model to be trained, but with over 50 million parameters with the basic 4 layer model, the depth and complexity of the model was extremely limited. Reducing the images to half of their initial size allowed a slightly more complex model to run, but it didn't have the depth to learn from the images, and accuracy stagnated at less than 60%(which is near to the unbalance of the classes). After 2 days of adjusting image sizes and model complexity with very little improvement, I concluded that a from-scratch model could not feasibly achive good results on my local machine. 
 
 
 ## Transfer Learning
+
+
+
+## GPU Computing
+Rather than tackle the dataset(very large images) through AWS, I wanted to find an at-home solution. I currently own a pc with a Ryzen 7 CPU and a Radeon RX 580 GPU, and decided to see how feasible a CNN is with limited hardware. In order to allow tensorflow to make use of the GPU, the [Rocm](https://rocm.github.io/) docker image was implemented and [TensorFlow-GPU](https://www.tensorflow.org/install/gpu) was installed. 
+
