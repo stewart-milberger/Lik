@@ -26,7 +26,7 @@ My initial approach used the full resolustion images. With a very basic, 4 layer
 </p>
 
 ## Transfer Learning
-Transfer learning uses a pretrained model which is not trainable, allowing a much deeper, complex model to identify features of the images. The selected model was the Resnet 50 V2, which has 50 layers which were trained on millions of photos belonging to over 1000 different classes. The input size of the images for this model is 124x124. Adding 2 Dense layers on top of the untrainable 50 layers of the resnet model with the smaller image size still resulted in over 20 million trainable paramters. 
+Transfer learning uses a pretrained model which is not trainable, allowing a much deeper, complex model to identify features of the images. The selected model was the Resnet 50 V2, which has 50 layers which were trained on millions of photos belonging to over 1000 different classes. The input size of the images for this model is 224x224, so my images were resized prior to modeling. Adding 2 Dense layers and a final sigmoid-activated output later, the resnet model with the smaller image size resulted in only 270k trainable paramters. Test accuracy capped at 93.2% accuracy after only 6 epochs with a loss of 0.24. Using these weights, perdictions on the 200 holdout images were 94% correct.
 
 <p align="center">
 <img src="plots/resnet.png" width="450" height="200">
