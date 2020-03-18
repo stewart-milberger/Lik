@@ -20,16 +20,26 @@ The other class(non-PL) of image was obtained from a landscape image [Kaggle-Dat
 
 ## Baseline CNN
 My initial approach used the full resolustion images. With a very basic, 4 layer CNN. Due to the size of the images, I had many issues with loading the data into memory. Loading the images in batches of 6 enabled the model to be trained, but with over 50 million parameters with the basic 4 layer model, the depth and complexity of the model was extremely limited. Reducing the images to half of their initial size allowed a slightly more complex model to run, but it didn't have the needed depth to learn from the images, and accuracy stagnated at less than 60%(which is near to the unbalance of the classes). After 2 days of adjusting image sizes and model complexity with very little improvement, I concluded that a from-scratch model could not feasibly achive good results on my local machine. 
-
 <p align="center">
 <img src="plots/base.png" width="450" height="200">
 </p>
 
 ## Transfer Learning
-Transfer learning uses a pretrained model which is not trainable, allowing a much deeper, complex model to identify features of the images. The selected model was the Resnet 50 V2, which has 50 layers which were trained on millions of photos belonging to over 1000 different classes. The input size of the images for this model is 224x224, so my images were resized prior to modeling. Adding 2 Dense layers and a final sigmoid-activated output later, the resnet model with the smaller image size resulted in only 270k trainable paramters. Test accuracy capped at 93.2% accuracy after only 6 epochs with a loss of 0.24. Using these weights, perdictions on the 200 holdout images were 94% correct.
-
+Transfer learning uses a pretrained model which is not trainable, allowing a much deeper, complex model to identify features of the images. The selected model was the Resnet 50 V2, which has 50 layers which were trained on millions of photos belonging to over 1000 different classes. The input size of the images for this model is 224x224, so my images were resized prior to modeling. Adding 2 Dense layers and a final sigmoid-activated output later, the resnet model with the smaller image size resulted in only 270k trainable paramters. Test accuracy capped at 93.2% accuracy after only 6 epochs with a loss of 0.24. Using these weights, perdictions on the 200 holdout images were 98% correct.
 <p align="center">
 <img src="plots/resnet.png" width="450" height="200">
+</p>
+
+This is the single PL image which was misclassified(False Negative):
+<p align="center">
+<img src="plots/PL_705.png" width="600" height="200">
+</p>
+
+And here are the 3 False Positives:
+<p align="center">
+<img src="plots/776.png" width="600" height="200">
+<img src="plots/869.png" width="600" height="200">
+<img src="plots/916.png" width="600" height="200">
 </p>
 
 ## GPU Computing
